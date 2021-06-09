@@ -65,7 +65,7 @@ func (c *Consumer) PollWithSyncCommit(handle func(message *Message) error) error
 		return err
 	}
 	if err := handle(&Message{
-		Value: string(msg.Value),
+		Value: msg.Value,
 		Key:   string(msg.Key),
 	}); err != nil {
 		return err
@@ -85,7 +85,7 @@ func (c *Consumer) PollWithAutoCommit() (*Message, error) {
 		return nil, err
 	}
 	return &Message{
-		Value: string(ev.Value),
+		Value: ev.Value,
 		Key:   string(ev.Key),
 	}, nil
 }

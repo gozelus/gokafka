@@ -10,7 +10,7 @@ var PartitionReachedError = fmt.Errorf(kafka.ErrPartitionEOF.String())
 
 type Message struct {
 	Topic string
-	Value string
+	Value []byte
 	Key   string
 }
 

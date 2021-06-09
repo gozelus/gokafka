@@ -33,7 +33,8 @@ func (p *Producer) SyncSendMessage(ctx context.Context, msg *Message) error {
 	deliveryChans := make(chan kafka.Event, 10000)
 	err := p.innerProducer.Produce(&kafka.Message{
 		TopicPartition: kafka.TopicPartition{Topic: &msg.Topic, Partition: kafka.PartitionAny},
-		Value:          []byte(msg.Value)},
+		Value:          msg.Value,
+	},
 		deliveryChans,
 	)
 	if err != nil {
