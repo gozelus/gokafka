@@ -12,6 +12,7 @@ type Producer struct {
 func (p *Producer) AsyncSendMessage(msg *Message, ck func(error)) error {
 	deliveryChans := make(chan kafka.Event, 10000)
 	err := p.innerProducer.Produce(&kafka.Message{
+		Key:            []byte(msg.Key),
 		TopicPartition: kafka.TopicPartition{Topic: &msg.Topic, Partition: kafka.PartitionAny},
 		Value:          []byte(msg.Value)},
 		deliveryChans,
@@ -32,6 +33,7 @@ func (p *Producer) AsyncSendMessage(msg *Message, ck func(error)) error {
 func (p *Producer) SyncSendMessage(ctx context.Context, msg *Message) error {
 	deliveryChans := make(chan kafka.Event, 10000)
 	err := p.innerProducer.Produce(&kafka.Message{
+		Key:            []byte(msg.Key),
 		TopicPartition: kafka.TopicPartition{Topic: &msg.Topic, Partition: kafka.PartitionAny},
 		Value:          msg.Value,
 	},
