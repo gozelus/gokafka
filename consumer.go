@@ -33,7 +33,7 @@ func NewConsumer(config Config) (*Consumer, error) {
 		_ = kafkaconf.SetKey("security.protocol", "plaintext")
 	case "sasl_ssl":
 		_ = kafkaconf.SetKey("security.protocol", "sasl_ssl")
-		_ = kafkaconf.SetKey("ssl.ca.location", "./conf/ca-cert.pem")
+		_ = kafkaconf.SetKey("ssl.ca.location", config.BootConfig.CertPath)
 		_ = kafkaconf.SetKey("sasl.username", config.BootConfig.SaslUsername)
 		_ = kafkaconf.SetKey("sasl.password", config.BootConfig.SaslPassword)
 		_ = kafkaconf.SetKey("sasl.mechanism", config.BootConfig.SaslMechanism)
