@@ -16,8 +16,6 @@ type Message struct {
 
 // 启动参数
 type BootstrapConfig struct {
-	Topic            string `yaml:"Topic"`
-	GroupId          string `yaml:"GroupId"`
 	BootstrapServers string `yaml:"BootstrapServers"`
 	SecurityProtocol string `yaml:"SecurityProtocol"`
 	SslCaLocation    string `yaml:"SslCaLocation"`
