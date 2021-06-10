@@ -22,7 +22,7 @@ func TestForAsyncSend(t *testing.T) {
 	for i := 0; i < 100000; i++ {
 		if err := p.AsyncSendMessage(&Message{
 			Topic: "test",
-			Value: fmt.Sprintf("hello : %d", i),
+			Value: []byte(fmt.Sprintf("hello : %d", i)),
 			Key:   fmt.Sprintf("%d", i),
 		}, nil); err != nil {
 			t.Fatal(err)
@@ -46,7 +46,7 @@ func TestFroSyncSend(t *testing.T) {
 	for i := 0; i < 100000; i++ {
 		if err := p.SyncSendMessage(context.Background(), &Message{
 			Topic: "test",
-			Value: fmt.Sprintf("hello : %d", i),
+			Value: []byte(fmt.Sprintf("hello : %d", i)),
 			Key:   fmt.Sprintf("%d", i),
 		}); err != nil {
 			t.Fatal(err)
