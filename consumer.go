@@ -3,7 +3,7 @@ package gokafka
 import (
 	"context"
 	"fmt"
-	"github.com/confluentinc/confluent-kafka-go/kafka"
+	"gopkg.in/confluentinc/confluent-kafka-go.v1/kafka"
 )
 
 type Consumer struct {
